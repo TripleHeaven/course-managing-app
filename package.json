@@ -1,0 +1,19 @@
+{
+  "name": "course-managing-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/TripleHeaven/course-managing-app.git",
+  "author": "TripleHeaven <heaven30.buroff@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"yarn --cwd client start\" \"yarn --cwd server start\"",
+    "build": "yarn --cwd client build && yarn --cwd server build"
+  },
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}
