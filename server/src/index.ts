@@ -12,6 +12,8 @@ import apiRoutes from "./routes/api.routes.js";
 import onError from "./utils/onError.js";
 import { UserRouter } from "./controllers/user/UserRouter.js";
 
+import mongoose from "mongoose";
+
 // путь к текущей директории
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -60,6 +62,14 @@ app.use("*", (req, res) => {
 app.use(onError);
 
 // запуск сервера
-app.listen(config.port, () => {
-  console.log("🚀 Server ready to handle requests");
+app.listen(config.port, async () => {
+  try {
+    console.log("URL TEST", process.env.DATABASE_URL);
+
+    // await mongoose.connect(process.env.DATABASE_URL ?? "");
+
+    console.log("🚀 Server ready to handle requests");
+  } catch (e) {
+    console.error(e);
+  }
 });
