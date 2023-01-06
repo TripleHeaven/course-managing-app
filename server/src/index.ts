@@ -10,6 +10,7 @@ import { developmentConfig, productionConfig } from "./config/index.js";
 import apiRoutes from "./routes/api.routes.js";
 // обработчик ошибок
 import onError from "./utils/onError.js";
+import { UserRouter } from "./controllers/user/UserRouter.js";
 
 // путь к текущей директории
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -49,6 +50,8 @@ if (isProduction) {
 
 // роуты
 app.use("/api", apiRoutes);
+app.use("/api/user", UserRouter);
+
 // роут not found
 app.use("*", (req, res) => {
   res.status(404).json({ message: "Page not found" });
