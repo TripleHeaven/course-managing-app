@@ -25,6 +25,7 @@ UserRouter.post("/signup", async (req: any, res: any) => {
 // Login route to verify a user and get a token
 UserRouter.post("/login", async (req: any, res: any) => {
   try {
+    console.log("test");
     // check if the user exists
     const user = await User.findOne({ username: req.body.username });
     if (user) {

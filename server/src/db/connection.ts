@@ -2,7 +2,7 @@ import { Mongoose } from "mongoose";
 const { DATABASE_URL } = process.env;
 
 // CONNECT TO MONGO
-const mongoClient = new Mongoose();
+export const mongoClient = new Mongoose();
 
 mongoClient.connect(DATABASE_URL ?? "");
 
