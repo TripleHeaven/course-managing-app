@@ -4,7 +4,8 @@ export const ROUTES = {
   LOGIN: '/login',
   RESET_PASSWORD: '/reset-password',
   ROOT: '/',
-  REGISTER: '/register'
+  REGISTER: '/register',
+  COURSES: '/courses'
 } as const;
 
 export const RouteMap = ROUTES;

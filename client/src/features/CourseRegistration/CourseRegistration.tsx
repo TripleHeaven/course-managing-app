@@ -1,73 +1,91 @@
 import React, { useState } from 'react';
-import { Message } from '../../../../shared';
-import { sendRightMessage, sendWrongMessage } from '../../api';
+import { Course, Message } from '../../../../shared';
+import {
+  registerCourse as registerCourseApi,
+  sendRightMessage,
+  sendWrongMessage
+} from '../../api';
 import { LogoutButton } from '../LogoutButton';
 
 // API
 // общий тип сообщения
 
 export const CourseRegistration = () => {
-  // состояние сообщения
-  const [message, setMessage] = useState<Message | undefined>();
-  // состояние ошибки
-
-  const [error, setError] = useState<any>(null);
-
-  // метод для отправки неправильного сообщения
-  const sendWrongMessageApi = () => {
-    // обнуляем приветствие от сервера
-    setMessage(undefined);
-
-    sendWrongMessage().then(setMessage).catch(setError);
+  const registerCourse = async (course: Course) => {
+    await registerCourseApi(course);
   };
 
-  const sendRightMessageApi = () => {
-    // обнуляем сообщение об ошибке
-    setError(null);
+  const [formState, setFormState] = useState({
+    name: '',
+    phoneNumber: '',
+    section: '',
+    birthDate: new Date(),
+    topic: '',
+    isPresident: false,
+    email: ''
+  });
 
-    sendRightMessage().then(setMessage).catch(setError);
+  const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setFormState({ ...formState, name: e.currentTarget.value });
+  };
+
+  const handlePhoneChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setFormState({ ...formState, phoneNumber: e.currentTarget.value });
+  };
+
+  const handleSectionChange = (e: React.FormEvent<HTMLSelectElement>) => {
+    setFormState({ ...formState, section: e.currentTarget.value });
+  };
+
+  const handleBirthDateChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setFormState({ ...formState, birthDate: new Date(e.currentTarget.value) });
+  };
+
+  const handleTopicChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setFormState({ ...formState, topic: e.currentTarget.value });
+  };
+
+  const handleEmailChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setFormState({ ...formState, email: e.currentTarget.value });
+  };
+
+  const handlePresidentChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setFormState({ ...formState, isPresident: Boolean(e.currentTarget.value) });
   };
 
   return (
     <>
-      <div>
-        <button onClick={sendWrongMessageApi} className="wrong-message">
-          Send wrong message
-        </button>
-        <button onClick={sendRightMessageApi} className="right-message">
-          Send right message
-        </button>
-        {/* onClick={window.location.reload} не будет работать из-за того, что this потеряет контекст, т.е. window.location */}
-        <button onClick={() => window.location.reload()}>Reload window</button>
-      </div>
-      {/* блок для приветствия от сервера */}
-      {message && (
-        <div className="message-container">
-          <h2>{message.title}</h2>
-          <p>{message.body}</p>
-        </div>
-      )}
-      {/* блок для сообщения об ошибке */}
-      {error && <p className="error-message">{error.message}</p>}
-      <div>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+
+          registerCourse(formState);
+        }}
+      >
         <div>
           <label>ФИО</label>
-          <input></input>
+          <input onChange={handleNameChange} />
         </div>
 
         <div>
           <label>Контактный телефон</label>
-          <input></input>
+          <input onChange={handlePhoneChange}></input>
         </div>
 
         <div>
           <label>E-mail</label>
-          <input></input>
+          <input onChange={handleEmailChange}></input>
+        </div>
+
+        <div>
+          <label>Тема доклада</label>
+          <input onChange={handleTopicChange}></input>
         </div>
 
         <div>
           <label>Предмет</label>
-          <select name="test">
+          <select name="test" onChange={handleSectionChange}>
+            <option value="">--Выбрать предмет--</option>
             <option value="Математика">Астрофизика</option>
             <option value="Математика">Математика</option>
             <option value="Математика">Русский язык</option>
@@ -78,14 +96,16 @@ export const CourseRegistration = () => {
 
         <div>
           <label>Дата рождения</label>
-          <input type="data" />
+          <input type="date" onChange={handleBirthDateChange} />
         </div>
 
         <div>
           <label>Номинировать доклад на премию президента</label>
-          <input type="checkbox" />
+          <input type="checkbox" onChange={handlePresidentChange} />
         </div>
-      </div>
+
+        <button type="submit">Добавить курс</button>
+      </form>
       <LogoutButton />
     </>
   );

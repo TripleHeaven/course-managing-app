@@ -1,5 +1,5 @@
 import { SERVER_URI } from '../config';
-import { Message } from '../../../shared';
+import { Course, Message } from '../../../shared';
 
 const commonOptions = {
   method: 'POST',
@@ -108,6 +108,38 @@ export const sendRightMessage = async () => {
       // !
       return data.message as Message;
     }
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getCourses = async () => {
+  const options = {
+    ...commonOptions,
+    method: 'GET'
+  };
+
+  try {
+    const response = await fetch(`${SERVER_URI}/course`, options);
+    const data = await response.json();
+    if (data) {
+      return data;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const registerCourse = async (course: Course) => {
+  const options = {
+    ...commonOptions,
+    method: 'POST',
+    body: JSON.stringify(course)
+  };
+
+  try {
+    const response = await fetch(`${SERVER_URI}/course`, options);
+    const data = await response.json();
   } catch (e) {
     throw e;
   }

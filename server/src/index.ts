@@ -13,6 +13,7 @@ import onError from "./utils/onError.js";
 import { UserRouter } from "./controllers/user/UserRouter.js";
 
 import mongoose from "mongoose";
+import { CourseRouter } from "./controllers/course/CourseRouter.js";
 
 // путь к текущей директории
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -53,6 +54,7 @@ if (isProduction) {
 // роуты
 app.use("/api", apiRoutes);
 app.use("/api/user", UserRouter);
+app.use("/api/course", CourseRouter);
 
 // роут not found
 app.use("*", (req, res) => {
