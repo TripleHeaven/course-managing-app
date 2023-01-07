@@ -64,9 +64,13 @@ app.use(onError);
 // запуск сервера
 app.listen(config.port, async () => {
   try {
-    console.log("URL TEST", process.env.DATABASE_URL);
+    if (!process.env.DATABASE_URL) {
+      throw new Error(
+        "Cannot connect to the database, environment base is null"
+      );
+    }
 
-    // await mongoose.connect(process.env.DATABASE_URL ?? "");
+    await mongoose.connect(process.env.DATABASE_URL ?? "");
 
     console.log("🚀 Server ready to handle requests");
   } catch (e) {
