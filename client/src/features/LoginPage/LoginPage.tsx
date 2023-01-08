@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { loginUser } from '../../api';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import { AppGlobalContainer } from '../AppGlobalContainer';
 import cookie from 'js-cookie';
 import { COOKIES } from '../../constants';
@@ -52,9 +52,6 @@ export const LoginPage = () => {
   return (
     <Layout>
       <div className={styles.container}>
-        <h1>Login</h1>
-      </div>
-      <div>
         <form
           onSubmit={e => {
             e.preventDefault();
@@ -63,8 +60,9 @@ export const LoginPage = () => {
           }}
           method="post"
         >
-          <div>
-            <label htmlFor="email">Login</label>
+          <h2>Login</h2>
+          <div className={styles.formElemInput}>
+            <label htmlFor="email">E-mail</label>
             <input type="email" name="email" onChange={handleEmailChange} />
           </div>
 

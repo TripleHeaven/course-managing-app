@@ -34,9 +34,6 @@ export const UserRegistrationPage = () => {
   return (
     <Layout>
       <div className={styles.container}>
-        <h1>Register</h1>
-      </div>
-      <div>
         <form
           onSubmit={e => {
             e.preventDefault();

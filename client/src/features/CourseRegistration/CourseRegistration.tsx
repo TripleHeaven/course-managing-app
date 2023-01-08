@@ -57,59 +57,63 @@ export const CourseRegistration = () => {
 
   return (
     <Layout>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
+      <div className={styles.container}>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
 
-          registerCourse(formState);
-        }}
-      >
-        <div className={styles.formContainer}>
-          <div>
-            <label>ФИО</label>
-            <input onChange={handleNameChange} />
+            registerCourse(formState);
+          }}
+        >
+          <h2>Добавление курса</h2>
+
+          <div className={styles.formContainer}>
+            <div>
+              <label>ФИО</label>
+              <input onChange={handleNameChange} />
+            </div>
+
+            <div>
+              <label>Контактный телефон</label>
+              <input onChange={handlePhoneChange}></input>
+            </div>
+
+            <div>
+              <label>E-mail</label>
+              <input onChange={handleEmailChange}></input>
+            </div>
+
+            <div>
+              <label>Тема доклада</label>
+              <input onChange={handleTopicChange}></input>
+            </div>
+
+            <div>
+              <label>Предмет</label>
+              <select name="test" onChange={handleSectionChange}>
+                <option value="">--Выбрать предмет--</option>
+                <option value="Математика">Астрофизика</option>
+                <option value="Математика">Математика</option>
+                <option value="Математика">Русский язык</option>
+                <option value="Математика">Литература</option>
+                <option value="Математика">Биология</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Дата рождения</label>
+              <input type="date" onChange={handleBirthDateChange} />
+            </div>
+
+            <div>
+              <label>Номинировать доклад на премию президента</label>
+              <input type="checkbox" onChange={handlePresidentChange} />
+            </div>
+
+            <button type="submit">Добавить курс</button>
           </div>
-
-          <div>
-            <label>Контактный телефон</label>
-            <input onChange={handlePhoneChange}></input>
-          </div>
-
-          <div>
-            <label>E-mail</label>
-            <input onChange={handleEmailChange}></input>
-          </div>
-
-          <div>
-            <label>Тема доклада</label>
-            <input onChange={handleTopicChange}></input>
-          </div>
-
-          <div>
-            <label>Предмет</label>
-            <select name="test" onChange={handleSectionChange}>
-              <option value="">--Выбрать предмет--</option>
-              <option value="Математика">Астрофизика</option>
-              <option value="Математика">Математика</option>
-              <option value="Математика">Русский язык</option>
-              <option value="Математика">Литература</option>
-              <option value="Математика">Биология</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Дата рождения</label>
-            <input type="date" onChange={handleBirthDateChange} />
-          </div>
-
-          <div>
-            <label>Номинировать доклад на премию президента</label>
-            <input type="checkbox" onChange={handlePresidentChange} />
-          </div>
-
-          <button type="submit">Добавить курс</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </Layout>
   );
 };
