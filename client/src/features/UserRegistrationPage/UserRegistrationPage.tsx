@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { registerUser } from '../../api';
 import styles from './styles.module.css';
+import { Layout } from '../../components';
 
 export const UserRegistrationPage = () => {
   const [formState, setFormState] = useState({
@@ -31,7 +32,7 @@ export const UserRegistrationPage = () => {
   };
 
   return (
-    <div>
+    <Layout>
       <div className={styles.container}>
         <h1>Register</h1>
       </div>
@@ -61,6 +62,6 @@ export const UserRegistrationPage = () => {
           <button type="submit">Register</button>
         </form>
       </div>
-    </div>
+    </Layout>
   );
 };

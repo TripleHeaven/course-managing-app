@@ -6,6 +6,7 @@ import cookie from 'js-cookie';
 import { COOKIES } from '../../constants';
 import { history } from '../../utils';
 import { ROUTES } from '../Routes';
+import { Layout } from '../../components';
 
 export const LoginPage = () => {
   const { setJwtToken, jwtToken } = AppGlobalContainer.useContainer();
@@ -49,7 +50,7 @@ export const LoginPage = () => {
   };
 
   return (
-    <div>
+    <Layout>
       <div className={styles.container}>
         <h1>Login</h1>
       </div>
@@ -79,6 +80,6 @@ export const LoginPage = () => {
           <button type="submit"> Войти </button>
         </form>
       </div>
-    </div>
+    </Layout>
   );
 };
