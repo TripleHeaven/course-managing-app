@@ -6,6 +6,8 @@ import {
   sendWrongMessage
 } from '../../api';
 import { LogoutButton } from '../LogoutButton';
+import { Layout } from '../../components';
+import styles from './CourseRegistration.module.scss';
 
 // API
 // общий тип сообщения
@@ -54,7 +56,7 @@ export const CourseRegistration = () => {
   };
 
   return (
-    <>
+    <Layout>
       <form
         onSubmit={e => {
           e.preventDefault();
@@ -62,51 +64,52 @@ export const CourseRegistration = () => {
           registerCourse(formState);
         }}
       >
-        <div>
-          <label>ФИО</label>
-          <input onChange={handleNameChange} />
-        </div>
+        <div className={styles.formContainer}>
+          <div>
+            <label>ФИО</label>
+            <input onChange={handleNameChange} />
+          </div>
 
-        <div>
-          <label>Контактный телефон</label>
-          <input onChange={handlePhoneChange}></input>
-        </div>
+          <div>
+            <label>Контактный телефон</label>
+            <input onChange={handlePhoneChange}></input>
+          </div>
 
-        <div>
-          <label>E-mail</label>
-          <input onChange={handleEmailChange}></input>
-        </div>
+          <div>
+            <label>E-mail</label>
+            <input onChange={handleEmailChange}></input>
+          </div>
 
-        <div>
-          <label>Тема доклада</label>
-          <input onChange={handleTopicChange}></input>
-        </div>
+          <div>
+            <label>Тема доклада</label>
+            <input onChange={handleTopicChange}></input>
+          </div>
 
-        <div>
-          <label>Предмет</label>
-          <select name="test" onChange={handleSectionChange}>
-            <option value="">--Выбрать предмет--</option>
-            <option value="Математика">Астрофизика</option>
-            <option value="Математика">Математика</option>
-            <option value="Математика">Русский язык</option>
-            <option value="Математика">Литература</option>
-            <option value="Математика">Биология</option>
-          </select>
-        </div>
+          <div>
+            <label>Предмет</label>
+            <select name="test" onChange={handleSectionChange}>
+              <option value="">--Выбрать предмет--</option>
+              <option value="Математика">Астрофизика</option>
+              <option value="Математика">Математика</option>
+              <option value="Математика">Русский язык</option>
+              <option value="Математика">Литература</option>
+              <option value="Математика">Биология</option>
+            </select>
+          </div>
 
-        <div>
-          <label>Дата рождения</label>
-          <input type="date" onChange={handleBirthDateChange} />
-        </div>
+          <div>
+            <label>Дата рождения</label>
+            <input type="date" onChange={handleBirthDateChange} />
+          </div>
 
-        <div>
-          <label>Номинировать доклад на премию президента</label>
-          <input type="checkbox" onChange={handlePresidentChange} />
-        </div>
+          <div>
+            <label>Номинировать доклад на премию президента</label>
+            <input type="checkbox" onChange={handlePresidentChange} />
+          </div>
 
-        <button type="submit">Добавить курс</button>
+          <button type="submit">Добавить курс</button>
+        </div>
       </form>
-      <LogoutButton />
-    </>
+    </Layout>
   );
 };

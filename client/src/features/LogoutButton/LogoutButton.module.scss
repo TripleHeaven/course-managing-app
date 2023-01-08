@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  grid-gap: 0.3rem;
+  cursor: pointer;
+  color: #fff;
+  .navItemLogo {
+    width: 2rem;
+    color: #a55233;
+  }
+  transition: 0.5s;
+
+  &:hover {
+    color: yellow;
+  }
+}

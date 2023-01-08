@@ -3,6 +3,7 @@ import { history } from '../../utils';
 import { AppGlobalContainer } from '../AppGlobalContainer';
 import cookie from 'js-cookie';
 import { ROUTES } from '../Routes';
+import styles from './LogoutButton.module.scss';
 
 export const LogoutButton = () => {
   const { setJwtToken } = AppGlobalContainer.useContainer();
@@ -13,5 +14,10 @@ export const LogoutButton = () => {
     history.replace(ROUTES.LOGIN);
   };
 
-  return <button onClick={handleLogout}>LOGOUT</button>;
+  return (
+    <div onClick={handleLogout} className={styles.container}>
+      <img className={styles.navItemLogo} src="images/iconSignOutNav.svg"></img>
+      <p>Выйти</p>
+    </div>
+  );
 };

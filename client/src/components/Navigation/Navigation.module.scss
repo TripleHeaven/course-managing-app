@@ -1,0 +1,65 @@
+.container {
+  width: 100%;
+  max-height: 5rem;
+  background-color: #402a23;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+
+  .wrapper {
+    width: 1000px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .innerContainer {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    min-width: 100%;
+    justify-content: space-between;
+    flex-grow: 1;
+
+    .logoContainer {
+      display: flex;
+      grid-gap: 0.5rem;
+      color: #fff;
+
+      .logo {
+        width: 5rem;
+      }
+    }
+
+    .navItemsContainer {
+      display: flex;
+      grid-gap: 0.5rem;
+    }
+  }
+
+  .navItemLogo {
+    width: 2rem;
+    color: #a55233;
+  }
+
+  .link:nth-child(3) {
+    margin-right: 2rem;
+  }
+
+  .link:hover {
+    color: yellow;
+  }
+
+  .link {
+    text-decoration: none;
+    color: #fff;
+    transition: 0.5s;
+  }
+
+  .linkContainer {
+    display: flex;
+    grid-gap: 0.3rem;
+  }
+}
