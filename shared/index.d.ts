@@ -11,3 +11,7 @@ export type Course = {
   topic: string;
   isPresident: boolean;
 };
+
+export type Error = {
+  error?: string | undefined;
+};

@@ -46,17 +46,23 @@ export const loginUser = async (login: string, password: string) => {
   try {
     const response = await fetch(`${SERVER_URI}/user/login`, options);
 
-    if (!response.ok) throw response;
-
     const data = await response.json();
+
+    if (data.error) {
+      throw data;
+    }
 
     if (data?.token) {
       return data;
     }
   } catch (e: any) {
+    if (e.message) {
+      throw e;
+    }
+
     if (e.status === 400) {
       const data = await e.json();
-      throw data;
+      return data;
     }
     throw e;
   }

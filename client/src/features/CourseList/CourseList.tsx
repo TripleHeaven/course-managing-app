@@ -9,8 +9,6 @@ export const CourseList = () => {
     return <>Loading...</>;
   }
 
-  console.log(courses);
-
   return (
     <Layout>
       <div className={styles.container}>

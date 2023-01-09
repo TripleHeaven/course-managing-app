@@ -6,6 +6,8 @@ import { Root } from './features/Routes';
 import { AppGlobalContainer } from './features/AppGlobalContainer';
 import cookie from 'js-cookie';
 import { COOKIES } from './constants';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [jwtToken, setJwtToken] = useState(cookie.get(COOKIES.JWT_TOKEN));
@@ -13,7 +15,10 @@ function App() {
   return (
     <AppGlobalContainer.Provider initialState={{ jwtToken, setJwtToken }}>
       <Router history={history}>
-        <Root />
+        <>
+          <Root />
+          <ToastContainer />
+        </>
       </Router>
     </AppGlobalContainer.Provider>
   );

@@ -11,8 +11,6 @@ export const useGetCourses = () => {
       setLoading(true);
       const res = await getCourses();
 
-      console.log('RES', res);
-
       setCourses(res);
       setLoading(false);
     };

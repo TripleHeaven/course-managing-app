@@ -6,6 +6,12 @@
   margin-bottom: auto;
 }
 
+.inputError {
+  input {
+    background-color: red !important;
+  }
+}
+
 form {
   margin-top: auto;
   background-color: #1d1716;
@@ -44,9 +50,13 @@ form {
     // outline: 0;
     text-align: center;
     width: 100%;
+    transition: 0.5s;
   }
 
   button:active {
     background-color: #a55233;
+  }
+  button:disabled {
+    opacity: 0.5;
   }
 }

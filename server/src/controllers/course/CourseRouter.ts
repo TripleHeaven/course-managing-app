@@ -6,8 +6,6 @@ export const CourseRouter = Router();
 
 CourseRouter.post("", async (req: any, res: any) => {
   try {
-    console.log("TEST", req.body);
-
     const newCourse = await Course.create({
       id: new mongoose.mongo.ObjectId(),
       name: req.body.name,
