@@ -7,8 +7,9 @@ export type Course = {
   name: string;
   phoneNumber: string;
   section: string;
-  birthDate: Date;
+  birthDate?: Date | null;
   topic: string;
+  email: string;
   isPresident: boolean;
 };
 

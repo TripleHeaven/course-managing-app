@@ -60,16 +60,6 @@ export const Navigation = () => {
                     ></img>
                   }
                 />
-                <NavigationItem
-                  label={<p>Test</p>}
-                  route={ROUTES.COURSES}
-                  logo={
-                    <img
-                      className={styles.navItemLogo}
-                      src="images/iconNav3.svg"
-                    ></img>
-                  }
-                />
                 <LogoutButton />
               </>
             ) : (

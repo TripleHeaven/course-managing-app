@@ -148,7 +148,12 @@ export const registerCourse = async (course: Course) => {
   try {
     const response = await fetch(`${SERVER_URI}/course`, options);
     const data = await response.json();
+
+    console.log('RESP', response);
+
+    return data;
   } catch (e) {
+    console.log('RESPA', e);
     throw e;
   }
 };
