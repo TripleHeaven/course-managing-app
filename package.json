@@ -7,8 +7,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "concurrently \"yarn --cwd client start\" \"yarn --cwd server start\"",
-    "build": "yarn --cwd client build && yarn --cwd server build"
+    "start": "concurrently \"npm --prefix client run start\" \"npm --prefix server run start\"",
+    "build": "npm  --prefix client run  build && npm --prefix server run build"
   },
   "dependencies": {
     "concurrently": "^7.6.0",
@@ -16,6 +16,6 @@
     "env-cmd": "^10.1.0"
   },
   "devDependencies": {
-    "typescript": "^4.9.4"
+    "typescript": "^4.6.2"
   }
 }

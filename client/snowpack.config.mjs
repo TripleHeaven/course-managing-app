@@ -27,7 +27,7 @@ export default {
     bundle: true,
     minify: true,
     treeshake: true,
-    target: 'es2019'
+    target: 'es2020'
   },
   presets: [
     '@babel/preset-typescript',

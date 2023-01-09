@@ -8,8 +8,8 @@
   "scripts": {
     "ts:watch": "env-cmd -f ../.env  tsc -w",
     "node:dev": "NODE_ENV=development env-cmd -f ../.env  nodemon",
-    "start": "concurrently \"yarn ts:watch\" \"yarn node:dev\"",
-    "build": "tsc --build && cross-env NODE_ENV=production node build/index.js"
+    "start": "concurrently \"npm run ts:watch\" \"npm run node:dev\"",
+    "build": "tsc --build && env-cmd -f ../.env NODE_ENV=production node build/index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -35,6 +35,6 @@
     "@types/jsonwebtoken": "^8.5.1",
     "@types/node": "^18.11.18",
     "nodemon": "^2.0.20",
-    "typescript": "^4.9.4"
+    "typescript": "^4.6.2"
   }
 }
