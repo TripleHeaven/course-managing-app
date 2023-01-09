@@ -52,8 +52,6 @@ export const UserRegistrationPage = () => {
       const response = await registerUser(login, password);
 
       if (response.token) {
-        console.log('RESPA', response);
-
         cookie.set(COOKIES.JWT_TOKEN, response.token);
         setJwtToken(response.token);
       }
