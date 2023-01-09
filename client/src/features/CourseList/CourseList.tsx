@@ -10,7 +10,7 @@ export const CourseList = () => {
   }
 
   return (
-    <Layout>
+    <Layout className={styles.test}>
       <div className={styles.container}>
         <h1>Courses</h1>
         <div className={styles.wrapper}>

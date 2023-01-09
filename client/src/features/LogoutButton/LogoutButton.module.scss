@@ -3,6 +3,18 @@
   grid-gap: 0.3rem;
   cursor: pointer;
   color: #fff;
+  @media (max-width: 350px) {
+    p {
+      display: none;
+    }
+  }
+
+  @media (max-width: 400px) {
+    p {
+      font-size: 12px;
+    }
+  }
+
   .navItemLogo {
     width: 2rem;
     color: #a55233;
