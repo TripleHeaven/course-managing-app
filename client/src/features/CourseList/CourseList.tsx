@@ -13,26 +13,28 @@ export const CourseList = () => {
     <Layout>
       <div className={styles.container}>
         <h1>Courses</h1>
-        <table>
-          <tr>
-            <th>ФИО</th>
-            <th>Номер</th>
-            <th>Предмет</th>
-            <th>Дата рождения</th>
-            <th>Тема</th>
-            <th>Премия</th>
-          </tr>
-          {courses?.map((course, i) => (
+        <div className={styles.wrapper}>
+          <table>
             <tr>
-              <td>{course.name}</td>
-              <td>{course.phoneNumber}</td>
-              <td>{course.section}</td>
-              <td>{course.birthDate}</td>
-              <td>{course.topic}</td>
-              <td>{course.isPresident ? 'да' : 'нет'}</td>
+              <th>ФИО</th>
+              <th>Номер</th>
+              <th>Предмет</th>
+              <th>Дата рождения</th>
+              <th>Тема</th>
+              <th>Премия</th>
             </tr>
-          ))}
-        </table>
+            {courses?.map((course, i) => (
+              <tr>
+                <td>{course.name}</td>
+                <td>{course.phoneNumber}</td>
+                <td>{course.section}</td>
+                <td>{course.birthDate}</td>
+                <td>{course.topic}</td>
+                <td>{course.isPresident ? 'да' : 'нет'}</td>
+              </tr>
+            ))}
+          </table>
+        </div>
       </div>
     </Layout>
   );
