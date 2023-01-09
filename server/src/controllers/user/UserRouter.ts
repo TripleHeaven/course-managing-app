@@ -27,6 +27,23 @@ UserRouter.post("/signup", async (req: any, res: any) => {
       username: req.body.login,
       password: hashedPassword,
     });
+
+    if (user) {
+      //check if password matches
+      const result = await compare(req.body.password, user.password);
+      if (result) {
+        // sign token and send it in response
+        const token = sign({ username: user.username }, SECRET);
+        res.json({ token });
+      } else {
+        res.status(400).json({ error: "password doesn't match" });
+      }
+    } else {
+      res.status(400).json({ error: "User doesn't exist" });
+    }
+
+    return;
+
     // send new user as response
     res.json(user);
   } catch (error) {

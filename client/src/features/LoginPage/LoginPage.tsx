@@ -47,6 +47,30 @@ export const LoginPage = () => {
     password: ''
   });
 
+  const validateValues = () => {
+    if (formState.email.length < 6) {
+      setErrors({
+        ...errors,
+        isError: true,
+        emailMessage: 'Length must be >= 6'
+      });
+
+      return false;
+    }
+
+    if (formState.password.length < 6) {
+      setErrors({
+        ...errors,
+        isError: true,
+        passwordMessage: 'Password is too short'
+      });
+
+      return false;
+    }
+
+    return true;
+  };
+
   // console.log('URL TEST', import.meta.env.SNOWPACK_PUBLIC_DATABASE_URL);
 
   const login = async (login: string, password: string) => {
@@ -84,7 +108,9 @@ export const LoginPage = () => {
   };
 
   const handleSubmit = () => {
-    login(formState.email, formState.password);
+    if (validateValues()) {
+      login(formState.email, formState.password);
+    }
   };
 
   const handleEmailChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -121,10 +147,10 @@ export const LoginPage = () => {
               errors.email && styles.inputError
             )}
           >
-            <label htmlFor="email">E-mail</label>
-            <input type="email" name="email" onChange={handleEmailChange} />
+            <label htmlFor="email">Login</label>
+            <input name="email" onChange={handleEmailChange} />
             {errors.emailMessage && (
-              <p style={{ color: 'red', margin: 0 }}>User doesn't exist</p>
+              <p style={{ color: 'red', margin: 0 }}>{errors.emailMessage}</p>
             )}
           </div>
 
@@ -136,7 +162,9 @@ export const LoginPage = () => {
               onChange={handlePasswordChange}
             />
             {errors.passwordMessage && (
-              <p style={{ color: 'red', margin: 0 }}>Wrong password</p>
+              <p style={{ color: 'red', margin: 0 }}>
+                {errors.passwordMessage}
+              </p>
             )}
           </div>
 

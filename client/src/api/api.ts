@@ -81,12 +81,14 @@ export const registerUser = async (login: string, password: string) => {
   try {
     const response = await fetch(`${SERVER_URI}/user/signup`, options);
 
-    if (!response.ok) throw response;
-
     const data = await response.json();
 
-    if (data?.message) {
-      return data.message;
+    if (data.error) {
+      throw data;
+    }
+
+    if (data?.token) {
+      return data;
     }
   } catch (e: any) {
     if (e.status === 400) {
