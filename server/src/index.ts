@@ -5,7 +5,6 @@ import helmet from "helmet";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 // настройки
-import { developmentConfig, productionConfig } from "./config/index.js";
 // роуты
 import apiRoutes from "./routes/api.routes.js";
 // обработчик ошибок
@@ -18,16 +17,11 @@ import { CourseRouter } from "./controllers/course/CourseRouter.js";
 // путь к текущей директории
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+const localPort = process.env.PORT_LOCAL;
+const prodPort = process.env.PORT_PROD;
+
 // определяем режим
 const isProduction = process.env.NODE_ENV === "production";
-
-// выбираем настройки
-let config;
-if (isProduction) {
-  config = productionConfig;
-} else {
-  config = developmentConfig;
-}
 
 // создаем экземпляр приложения
 const app = express();
@@ -38,7 +32,10 @@ app.use(helmet());
 app.use(
   cors({
     // сервер будет обрабатывать запросы только из разрешенного источника
-    origin: config.allowedOrigin,
+    origin:
+      process.env.NODE_ENV === "production"
+        ? process.env.ALLOWED_ORIGIN_PROD
+        : process.env.ALLOWED_ORIGIN_LOCAL,
   })
 );
 // преобразование тела запроса из JSON в обычный объект
@@ -64,18 +61,21 @@ app.use("*", (req, res) => {
 app.use(onError);
 
 // запуск сервера
-app.listen(config.port, async () => {
-  try {
-    if (!process.env.DATABASE_URL) {
-      throw new Error(
-        "Cannot connect to the database, environment base is null"
-      );
+app.listen(
+  process.env.NODE_ENV === "production" ? prodPort : localPort,
+  async () => {
+    try {
+      if (!process.env.DATABASE_URL) {
+        throw new Error(
+          "Cannot connect to the database, environment base is null"
+        );
+      }
+
+      await mongoose.connect(process.env.DATABASE_URL ?? "");
+
+      console.log("🚀 Server ready to handle requests");
+    } catch (e) {
+      console.error(e);
     }
-
-    await mongoose.connect(process.env.DATABASE_URL ?? "");
-
-    console.log("🚀 Server ready to handle requests");
-  } catch (e) {
-    console.error(e);
   }
-});
+);
