@@ -11,9 +11,11 @@
     "build": "npm  --prefix client run  build && npm --prefix server run build"
   },
   "dependencies": {
+    "@snowpack/plugin-webpack": "^3.0.0",
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
-    "env-cmd": "^10.1.0"
+    "env-cmd": "^10.1.0",
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
     "typescript": "^4.6.2"

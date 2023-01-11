@@ -8,6 +8,7 @@ export default {
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-sass',
     '@snowpack/plugin-babel',
+    '@snowpack/plugin-webpack',
     ['@snowpack/plugin-dotenv', { dir: '../' }],
     [
       '@snowpack/plugin-typescript',
