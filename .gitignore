@@ -7,5 +7,3 @@ yarn-error.log*
 .snowpack
 # mac
 .DS_Store
-
-.env
