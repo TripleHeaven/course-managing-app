@@ -1,9 +1,6 @@
 import { Course, Message } from '../../../shared';
 
-const SERVER_URI =
-  import.meta.env.SNOWPACK_PUBLIC_SERVER_URI_PROD ||
-  'http://localhost:4000/api';
-import.meta.env.SNOWPACK_PUBLIC_DATABASE_URL;
+const SERVER_URI = 'https://course-managing-back.onrender.com';
 
 const commonOptions = {
   method: 'POST',
