@@ -23,12 +23,6 @@ export default {
     { match: 'all', src: '/api/.*', dest: (req, res) => proxy.web(req, res) },
     { match: 'routes', src: '.*', dest: '/index.html' }
   ],
-  optimize: {
-    bundle: true,
-    minify: true,
-    treeshake: true,
-    target: 'es2020'
-  },
   presets: [
     '@babel/preset-typescript',
     ['@babel/preset-react', { runtime: 'automatic' }], // 👈 this is important
