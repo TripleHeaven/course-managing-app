@@ -1,6 +1,6 @@
 import { Course, Message } from '../../../shared';
 
-const SERVER_URI = 'https://course-managing-back.onrender.com';
+const SERVER_URI = 'https://course-managing-back.onrender.com/api';
 
 const commonOptions = {
   method: 'POST',
