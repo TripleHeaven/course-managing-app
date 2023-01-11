@@ -6,9 +6,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "ts:watch": "env-cmd -f ../.env  tsc -w",
-    "node:dev": "NODE_ENV=development env-cmd -f ../.env  nodemon",
-    "node:prod": "NODE_ENV=production env-cmd -f ../.env node ./build/index.js",
+    "ts:watch": "tsc -w",
+    "node:dev": "NODE_ENV=development nodemon",
+    "node:prod": "NODE_ENV=production node ./build/index.js",
     "start": "concurrently \"yarn ts:watch\" \"yarn node:dev\"",
     "build": "tsc --build"
   },

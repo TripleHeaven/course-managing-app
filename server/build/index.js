@@ -25,9 +25,7 @@ app.use(helmet());
 // устанавливаем заголовки, связанные с CORS
 app.use(cors({
     // сервер будет обрабатывать запросы только из разрешенного источника
-    origin: process.env.NODE_ENV === "production"
-        ? process.env.ALLOWED_ORIGIN_PROD
-        : process.env.ALLOWED_ORIGIN_LOCAL,
+    origin: process.env.ALLOWED_ORIGIN_PROD || "http://localhost:8080",
 }));
 // преобразование тела запроса из JSON в обычный объект
 app.use(json());
@@ -49,14 +47,14 @@ app.use("*", (req, res) => {
 // обработчик ошибок
 app.use(onError);
 // запуск сервера
-app.listen(process.env.NODE_ENV === "production" ? prodPort : localPort, async () => {
+app.listen(process.env.PORT || localPort, async () => {
     var _a;
     try {
         if (!process.env.DATABASE_URL) {
             throw new Error("Cannot connect to the database, environment base is null");
         }
         await mongoose.connect((_a = process.env.DATABASE_URL) !== null && _a !== void 0 ? _a : "");
-        console.log("🚀 Server ready to handle requests");
+        console.log("🚀 Server ready to handle requests\n started on port", process.env.PORT || localPort);
     }
     catch (e) {
         console.error(e);
