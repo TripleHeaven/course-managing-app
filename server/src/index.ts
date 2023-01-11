@@ -32,10 +32,7 @@ app.use(helmet());
 app.use(
   cors({
     // сервер будет обрабатывать запросы только из разрешенного источника
-    origin:
-      process.env.NODE_ENV === "production"
-        ? process.env.ALLOWED_ORIGIN_PROD
-        : process.env.ALLOWED_ORIGIN_LOCAL,
+    origin: process.env.ALLOWED_ORIGIN_PROD || "http://localhost:8080",
   })
 );
 // преобразование тела запроса из JSON в обычный объект
