@@ -61,21 +61,21 @@ app.use("*", (req, res) => {
 app.use(onError);
 
 // запуск сервера
-app.listen(
-  process.env.NODE_ENV === "production" ? prodPort : localPort,
-  async () => {
-    try {
-      if (!process.env.DATABASE_URL) {
-        throw new Error(
-          "Cannot connect to the database, environment base is null"
-        );
-      }
-
-      await mongoose.connect(process.env.DATABASE_URL ?? "");
-
-      console.log("🚀 Server ready to handle requests");
-    } catch (e) {
-      console.error(e);
+app.listen(process.env.PORT || localPort, async () => {
+  try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error(
+        "Cannot connect to the database, environment base is null"
+      );
     }
+
+    await mongoose.connect(process.env.DATABASE_URL ?? "");
+
+    console.log(
+      "🚀 Server ready to handle requests\n started on port",
+      process.env.PORT || localPort
+    );
+  } catch (e) {
+    console.error(e);
   }
-);
+});
