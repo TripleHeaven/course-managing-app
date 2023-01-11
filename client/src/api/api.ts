@@ -1,9 +1,8 @@
 import { Course, Message } from '../../../shared';
 
 const SERVER_URI =
-  (process.env.NODE_ENV === 'production'
-    ? process.env.SERVER_URI_PROD
-    : process.env.SERVER_URI_LOCAL) ?? 'http://localhost:4000/api';
+  import.meta.env.SNOWPACK_PUBLIC_SERVER_URI_PROD ||
+  'http://localhost:4000/api';
 
 const commonOptions = {
   method: 'POST',
