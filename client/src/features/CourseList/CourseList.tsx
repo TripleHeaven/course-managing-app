@@ -28,7 +28,9 @@ export const CourseList = () => {
                 <td>{course.name}</td>
                 <td>{course.phoneNumber}</td>
                 <td>{course.section}</td>
-                <td>{course.birthDate}</td>
+                <td>
+                  {course ? course.birthDate?.toISOString().slice(0, 10) : '-'}
+                </td>
                 <td>{course.topic}</td>
                 <td>{course.isPresident ? 'да' : 'нет'}</td>
               </tr>
